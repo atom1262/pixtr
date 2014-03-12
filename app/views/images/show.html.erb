@@ -1,0 +1,7 @@
+<h2><%= @image.name %></h2>
+<img src="<%= @image.url %>">
+<h2><%= @image.description %></h2>
+
+<%= link_to "Edit Image", edit_image_path(@image)%>
+<%= link_to "Destroy Image", @image, method: :delete, confirm: "Are you sure you want to delete this image?" %>
+<%= link_to "Return to Gallery",  gallery_path(@image[:gallery_id]) %>

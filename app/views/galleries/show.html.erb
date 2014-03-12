@@ -1,9 +1,14 @@
 <h1><%= @gallery.name %></h1>
 
+<nav>
 <%= link_to "Edit", edit_gallery_path(@gallery) %>
 <%= link_to "Delete", @gallery, method: :delete %>
 <%= link_to "Add Image", new_gallery_image_path(@gallery) %>
+<%= link_to "Return to Homepage",  root_path %>
+</nav>
 
 <% @gallery.images.each do |image| %>
-  <img src="<%= image.url %>">
+  <%= link_to image do %>
+    <img src="<%= image.url %>"> 
+  <% end %>
 <% end %>

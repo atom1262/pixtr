@@ -5,7 +5,7 @@ Pixtr::Application.routes.draw do
   # get "/" => "galleries#index" <-- same as above
 
   resources :galleries do
-    resources :images
+    resources :images, shallow: true
   end
   # get "/galleries/new" => "galleries#new"
   # get "/galleries/:id" => "galleries#show", as: :gallery
@@ -15,4 +15,6 @@ Pixtr::Application.routes.draw do
   # delete "/galleries/:id" => "galleries#destroy"
 
   # the above will become resources :galleries
+
+  # resources :images, only: [:show, :edit. :update, :destroy] <--  make image clickable
 end

@@ -1,0 +1,6 @@
+<%= form_for(@image) do |form| %>
+  <%= form.text_field :name, placeholder: "Name" %>
+  <%= form.text_field :description, placeholder: "Description" %>
+  <%= form.text_field :url, placeholder: "URL" %>
+  <%= form.submit "Update Image" %>
+<% end %>
