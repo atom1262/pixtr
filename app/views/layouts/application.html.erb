@@ -8,6 +8,15 @@
 </head>
 <body>
 
+<% if signed_in? %>
+ Welcome <%= current_user.username %>! You are signed in.
+ <div><%= link_to "Sign Out", session_path, method: :delete %></div>
+<% else %>
+<div><%= link_to "Sign Up", new_user_path %></div>
+<div><%= link_to "Sign In", new_session_path %></div>
+
+<% end %>
+
 <%= yield %>
 
 </body>

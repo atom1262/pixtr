@@ -3,6 +3,9 @@ Pixtr::Application.routes.draw do
 
   root "galleries#index"
   # get "/" => "galleries#index" <-- same as above
+resources :users, only: [:new, :create]
+resource :session, only: [:new, :create, :destroy]
+
 
   resources :galleries do
     resources :images
