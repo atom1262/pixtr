@@ -1,13 +1,11 @@
 Pixtr::Application.routes.draw do
   get "/galleries/random" => "random_galleries#show"
 
-  root "galleries#index"
+  root "homes#show"
   # get "/" => "galleries#index" <-- same as above
-resources :users, only: [:new, :create]
-resource :session, only: [:new, :create, :destroy]
 
 
   resources :galleries do
-    resources :images
+    resources :images, shallow: true
   end
 end 
