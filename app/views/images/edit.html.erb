@@ -1,4 +1,6 @@
 <%= form_for(@image) do |form| %>
+<%= render 'error_messages', target: @image %>
+
   <%= form.text_field :name, placeholder: "Name" %>
   <%= form.text_field :description, placeholder: "Description" %>
   <%= form.text_field :url, placeholder: "URL" %>
