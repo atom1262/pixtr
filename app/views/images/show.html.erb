@@ -9,7 +9,7 @@
   </nav>
 <% end %>
 
-<%= image_tag(@image.url) %>
+<%= image_tag(@image.url, width: "300") %>
 <p><%= @image.description %></p>
 
 <% if signed_in? %>
@@ -22,3 +22,4 @@
 <% end %>
 
   <%= render @comments %>
+  <%= paginate @comments %>
