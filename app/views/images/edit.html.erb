@@ -1,8 +1,19 @@
 <%= form_for(@image) do |form| %>
 <%= render 'error_messages', target: @image %>
 
-  <%= form.text_field :name, placeholder: "Name" %>
-  <%= form.text_field :description, placeholder: "Description" %>
-  <%= form.text_field :url, placeholder: "URL" %>
-  <%= form.submit "Update Image" %>
+  <div>
+    <%= form.text_field :name, placeholder: "Name" %>
+  </div>
+  <div>
+    <%= form.text_field :description, placeholder: "Description" %>
+  </div>
+  <div>
+    <%= form.text_field :url, placeholder: "URL" %>
+  </div>
+  <div>
+    <%= form.collection_check_boxes :group_ids, @groups, :id, :name %>
+  </div>
+  <div>
+    <%= form.submit "Update Image" %>
+  </div>
 <% end %>
