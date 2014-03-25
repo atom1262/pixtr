@@ -1,9 +1,13 @@
 class Image < ActiveRecord::Base
   belongs_to :gallery
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
-  has_many :group_images
+  has_many :group_images, dependent: :destroy
   has_many :groups, through: :group_images
+
+  has_many :likes, as: :likeable, dependent: :destroy 
+
+  has_many :activities
 
   validates :name, presence: true
   validates :description, presence: true

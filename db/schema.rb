@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319135032) do
+ActiveRecord::Schema.define(version: 20140325184319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: true do |t|
+    t.integer  "user_id"
+    t.string   "type"
+    t.integer  "subject_id"
+    t.string   "subject_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activities", ["subject_id", "subject_type"], name: "index_activities_on_subject_id_and_subject_type", using: :btree
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -26,6 +38,16 @@ ActiveRecord::Schema.define(version: 20140319135032) do
 
   add_index "comments", ["image_id"], name: "index_comments_on_image_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "following_relationships", force: true do |t|
+    t.integer  "followed_user_id"
+    t.integer  "follower_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "following_relationships", ["followed_user_id"], name: "index_following_relationships_on_followed_user_id", using: :btree
+  add_index "following_relationships", ["follower_id"], name: "index_following_relationships_on_follower_id", using: :btree
 
   create_table "galleries", force: true do |t|
     t.string  "name"
@@ -62,11 +84,24 @@ ActiveRecord::Schema.define(version: 20140319135032) do
   end
 
   create_table "images", force: true do |t|
-    t.string  "name"
-    t.text    "description"
-    t.string  "url"
-    t.integer "gallery_id"
+    t.string   "name"
+    t.text     "description"
+    t.string   "url"
+    t.integer  "gallery_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  create_table "likes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "likeable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "likeable_type"
+  end
+
+  add_index "likes", ["likeable_id", "likeable_type"], name: "index_likes_on_likeable_id_and_likeable_type", using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.datetime "created_at",                     null: false
