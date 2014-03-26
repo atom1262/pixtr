@@ -6,6 +6,10 @@ Pixtr::Application.routes.draw do
   resource :dashboard, only: [:show]
 
   resources :galleries do
+    member do
+      post "like" => "like_galleries#create"
+      delete "unlike" => "like_galleries#destroy"
+    end
     resources :images, only: [:new, :create]
   end
 
@@ -13,7 +17,9 @@ Pixtr::Application.routes.draw do
     member do 
       post "join" => "group_memberships#create"
       delete "leave" => "group_memberships#destroy"
-    end
+      post "like" => "like_groups#create"
+      delete "unlike" => "like_groups#destroy"
+    end 
   end
 
   resources :images, except: [:index, :new, :create] do

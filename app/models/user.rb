@@ -27,6 +27,16 @@ class User < ActiveRecord::Base
     source: :likeable,
     source_type: 'Image'
 
+  has_many :liked_groups,
+    through: :likes,
+    source: :likeable,
+    source_type: 'Group'
+
+  has_many :liked_galleries,
+    through: :likes,
+    source: :likeable,
+    source_type: 'Gallery'
+
   has_many :activities
 
   def notify_followers(subject, type)
@@ -69,11 +79,12 @@ class User < ActiveRecord::Base
     notify_followers(like, 'LikeActivity')
   end
 
-  def likes?(image)
-    liked_image_ids.include? image.id
+  def likes?(target)
+    likes.exists?(likeable: target)
   end
 
-  def unlike(image)
-    liked_images.destroy(image)
+  def unlike(target)
+    like = likes.find_by(likeable: target) 
+    like.destroy
   end 
 end

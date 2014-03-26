@@ -7,7 +7,7 @@ class Image < ActiveRecord::Base
 
   has_many :likes, as: :likeable, dependent: :destroy 
 
-  has_many :activities
+  has_many :activities, as: :subject, dependent: :destroy
 
   validates :name, presence: true
   validates :description, presence: true

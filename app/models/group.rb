@@ -5,5 +5,9 @@ class Group < ActiveRecord::Base
   has_many :group_images, dependent: :destroy
   has_many :images, through: :group_images
 
+  has_many :likes, as: :likeable, dependent: :destroy
+
+  has_many :activities, as: :subject, dependent: :destroy
+
   validates :name, presence: true
 end
