@@ -1,5 +1,0 @@
-template = "<%=j button_to "Unlike", unlike_group_path(@group), remote: true, method: :delete %>";
-$("#like-button").html(template);
-
-counter = "<%=j pluralize(@group.likes.count, "like") %>";
-$("#like-count").html(counter);

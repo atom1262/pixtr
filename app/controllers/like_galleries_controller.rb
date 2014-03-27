@@ -1,15 +1,15 @@
 class LikeGalleriesController < ApplicationController
 
   def create
-    gallery = find_gallery
-    current_user.like(gallery)
-    redirect_to gallery
+    @gallery = find_gallery
+    current_user.like(@gallery)
+    render :change
   end
 
   def destroy
-    gallery = find_gallery
-    current_user.unlike(gallery)
-    redirect_to gallery
+    @gallery = find_gallery
+    current_user.unlike(@gallery)
+    render :change
   end
 
   private

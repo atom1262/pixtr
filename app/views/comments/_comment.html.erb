@@ -1,7 +1,6 @@
 <div>
-  <%= comment.user.email %>  said:
-  <%= comment.body %>
+  <strong><%= comment.body %></strong>
+  <%= comment.user.email %>
+  <%= time_ago_in_words(comment.created_at) %>
 </div>  
-<div>
-  <strong><%= time_ago_in_words(comment.created_at) %> ago </strong>
-</div>
+

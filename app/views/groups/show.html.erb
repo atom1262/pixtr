@@ -1,27 +1,13 @@
 <h2><%= @group.name %></h2>
 
 <% if signed_in? %>
-  <% if current_user.joined?(@group) %>
-  You are a member!
-    <%= button_to "Leave Group", 
-    leave_group_path(@group),
-     method: :delete %>
-
-     <div id= "like-button">
-    <% if current_user.likes? @group %>
-        <%= button_to "Unlike", unlike_group_path(@group), remote: true, method: :delete %>
-    <% else %>
-      <%= button_to "Like", like_group_path(@group), remote: true %>
-    <% end %>
-    </div>
-
-<% else %>
-  <%= button_to "Join Group", join_group_path(@group) %>
-  <% end %>
+  <div id="join-group-button">
+    <%= render "join_group_button", group: @group %>
+  </div>
 <% end %>
 
-<div id= "like-count">
-<%= pluralize(@group.likes.count, "like") %>
+<div id= "like-group-button">
+  <%= render "like_group_button", group: @group %>
 </div>
 
 <div>

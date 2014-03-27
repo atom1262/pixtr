@@ -10,30 +10,21 @@
 <% end %>
 
 <div>
-<p><strong>Uploaded by: </strong><%= link_to @image.user.email, @image.user %></p>
+  <p><strong>Uploaded by: </strong><%= link_to @image.user.email, @image.user %></p>
 </div>
 <div>
-<p><strong>Uploaded on: </strong><%= (@image.created_at) %></p>
+  <p><strong>Uploaded on: </strong><%= (@image.created_at) %></p>
 </div>
 
 <%= image_tag(@image.url, width: "200") %>
-<p><%= @image.description %></p>
+  <p><%= @image.description %></p>
 
-<div>
-  <%= pluralize(@image.likes.count, "like") %>
-</div>
-
-<div>
-<% if current_user.likes? @image %>
-  You like this image!
-    <%= button_to "Unlike", unlike_image_path(@image), method: :delete %>
-<% else %>
-  <%= button_to "Like", like_image_path(@image) %>
-<% end %>
+<div id= "like-image-button">
+  <%= render "like_image_button", image: @image %>
 </div>
 
 <% if signed_in? %>
-  <%= form_for([@image, @comment]) do |form| %>
+  <%= form_for([@image, @comment], remote: true) do |form| %>
     <%= form.text_area :body %>
     <%= form.submit "Comment" %>
 <% end %>
@@ -41,5 +32,6 @@
   <%= link_to "Sign-in", sign_in_path %> to comment
 <% end %>
 
+<div id="comments">
   <%= render @comments %>
-  <%= paginate @comments %>
+</div>
