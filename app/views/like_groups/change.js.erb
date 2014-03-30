@@ -1,2 +1,2 @@
-template = "<%=j render "/groups/like_group_button" %>";
+template = "<%=j render "groups/like_group_button", group: @group %>";
 $("#like-group-button").html(template);

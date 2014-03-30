@@ -1,10 +1,10 @@
-<% if current_user.likes? @image %>
+<% if current_user.likes? image %>
   <p>You like this image!</p>
-    <%= button_to "Unlike", unlike_image_path(@image), remote: true, method: :delete %>
+    <%= button_to "Unlike", unlike_image_path(image), remote: true, method: :delete %>
 <% else %>
-  <%= button_to "Like", like_image_path(@image), remote: true %>
+  <%= button_to "Like", like_image_path(image), remote: true %>
 <% end %>
 
 <div>
-  <%= pluralize(@image.likes.count, "like") %>
+  <%= pluralize(image.likes.count, "like") %>
 </div>

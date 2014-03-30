@@ -1,4 +1,4 @@
-<h2><%= @user.email %></h2>
+<h2><%= link_to @user.email %>'s photos</h2>
 
 <% if current_user != @user %>
   <% if current_user.following? @user %>
