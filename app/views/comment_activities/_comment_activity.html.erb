@@ -1,6 +1,6 @@
 <li>
-<%= comment_activity.email %>
+<%= link_to comment_activity.email, comment_activity.actor %>
 commented about
 <%= comment_activity.email %>'s photo
-<%= link_to comment_activity.image_name, comment_activity.image %>
+<%= link_to comment_activity.target.name, comment_activity.target %>
 </li>

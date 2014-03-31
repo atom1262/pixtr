@@ -41,12 +41,14 @@ class User < ActiveRecord::Base
 
   has_many :comments
 
-  def notify_followers(subject, type)
+  def notify_followers(subject, target, type)
     if subject.persisted?
       followers.each do |follower|
         new_activity = follower.activities.create(
           subject: subject,
-          type: type
+          type: type,
+          actor: self,
+          target: target
         )
        UserMailer.notification_email(follower, new_activity).deliver
       end
@@ -55,7 +57,7 @@ class User < ActiveRecord::Base
 
   def follow(other_user)
     following_relationship = followed_user_relationships.create(followed_user: other_user)
-    notify_followers(following_relationship, 'FollowingRelationshipActivity') 
+    notify_followers(following_relationship, other_user, 'FollowingRelationshipActivity') 
   end
 
   def following?(other_user)
@@ -68,7 +70,7 @@ class User < ActiveRecord::Base
 
   def join(group)
     group_membership = group_memberships.create(group: group)
-    notify_followers(group_membership, 'GroupMembershipActivity')
+    notify_followers(group_membership, group, 'GroupMembershipActivity')
   end
 
   def joined?(group)
@@ -81,7 +83,7 @@ class User < ActiveRecord::Base
 
   def like(target)
     like = likes.create(likeable: target) #(key maps to table column/setter method, variable name is names)
-    notify_followers(like, 'LikeActivity')
+    notify_followers(like, target, 'LikeActivity')
   end
 
   def likes?(target)

@@ -1,5 +1,5 @@
 <li>
-<%= like_activity.email %>
+<%= like_activity.actor.email %>
 liked
-<%= link_to like_activity.likeable_name, like_activity.likeable %>
+<%= link_to like_activity.target.name, like_activity.target %>
 </li>

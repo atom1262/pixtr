@@ -1,11 +1,11 @@
 class GroupMembershipActivity < Activity 
 
   def email
-    subject.member.email
+    actor.email
   end
 
   def group
-    subject.group
+    target
   end
 
   def group_name

@@ -1,6 +1,6 @@
 <li>
-<%= group_membership_activity.email %>
+<%= group_membership_activity.actor.email %>
 joined the
-<%= link_to group_membership_activity.group_name, group_membership_activity.group %>
+<%= link_to group_membership_activity.target.name, group_membership_activity.target %>
 group
 </li>
