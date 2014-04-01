@@ -54,6 +54,7 @@ class User < ActiveRecord::Base
       end
     end
   end
+  handle_asynchronously :notify_followers
 
   def follow(other_user)
     following_relationship = followed_user_relationships.create(followed_user: other_user)
