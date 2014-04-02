@@ -1,4 +1,13 @@
 class ImagesController < ApplicationController
+
+  def index
+    if (params[:tag])
+      @images = Image.tagged_with(params[:tag])
+    else
+      @images = Image.all 
+    end
+  end
+
   def new
     @gallery = current_user.galleries.find(params[:gallery_id])
     @image = Image.new
@@ -48,6 +57,7 @@ class ImagesController < ApplicationController
       :name,
       :url,
       :description,
+      :tag_list,
       group_ids: []
     )
   end

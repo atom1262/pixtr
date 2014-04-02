@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   include Clearance::User
   
+  
   has_many :galleries, dependent: :destroy
   has_many :images, through: :galleries
 

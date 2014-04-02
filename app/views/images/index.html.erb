@@ -1,0 +1,9 @@
+<h1>Images</h1>
+
+<div id="tag cloud">
+  <%= tag_cloud Image.tag_counts, %w[s m l] do |tag, css_class| %>
+    <%= link_to tag.name, tags_path(tag.name), class: css_class %>
+  <% end %>   
+</div>
+
+<%= render @images %>

@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 1.2'
 gem 'clearance'
 gem 'kaminari'
 gem 'delayed_job_active_record'
+gem 'acts_as_taggable_on'
+
 
 group :development do
   gem 'pry-rails'
