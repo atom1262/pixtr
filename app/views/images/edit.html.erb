@@ -2,10 +2,12 @@
 <%= render 'error_messages', target: @image %>
 
   <div>
-    <%= form.text_field :name, placeholder: "Name" %>
+    Name <%= form.text_field :name, placeholder: "Name" %>
   </div>
   <div>
-    <%= form.text_field :description, placeholder: "Description" %>
+    Description <%= form.text_field :description, placeholder: "Description" %>
+  </div>
+   Tags (separate with comma) <%= form.text_field :tag_list, placeholder: "Tags" %>
   </div>
   <div>
     <%= form.text_field :url, placeholder: "URL" %>

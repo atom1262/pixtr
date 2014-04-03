@@ -5,6 +5,8 @@ Pixtr::Application.routes.draw do
 
   resource :dashboard, only: [:show]
 
+  resource :search, only: [:show]
+
   resources :galleries do
     member do
       post "like" => "like_galleries#create"
@@ -31,6 +33,8 @@ Pixtr::Application.routes.draw do
   end
 
   resources :comments, only: [:destroy]
+
+  resources :tags, only: [:show]
 
  # post "users/:id/follow" => "follwing_relationships#create", as: :follow_user <-- same as below
 
