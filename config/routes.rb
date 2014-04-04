@@ -7,6 +7,10 @@ Pixtr::Application.routes.draw do
 
   resource :search, only: [:show]
 
+  resources :charges, only: [:create]
+  
+  resource :account, only: [:show]
+
   resources :galleries do
     member do
       post "like" => "like_galleries#create"

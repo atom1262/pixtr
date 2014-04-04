@@ -1,14 +1,26 @@
 <header class="navigation">
   <div class="menu-wrapper">
     <a href="javascript:void(0)" class="logo">
-      <img src="https://raw.github.com/Magnus-G/Random/master/placeholder_logo_1.png" alt="">
+      <img src = "https://cdn1.iconfinder.com/data/icons/49handdrawing/128x128/photo-camera.png", width= "40", height= "100">
     </a>
     <p class="menu-button" id="js-mobile-menu">MENU</p>
     <div class="nav">
       <ul id="navigation-menu">
-        <li><a href="javascript:void(0)">Products</a></li>
-        <li><a href="javascript:void(0)">About Us</a></li>
-        <li><a href="javascript:void(0)">Contact</a></li>
+        
+        <% if signed_in? %>
+        <nav>
+          <ul>
+            <% if current_user.upgraded? %>
+              <li><%= link_to 'Premium User', dashboard_path %>
+            <% else %>
+              <li><%= link_to 'Upgrade Account', account_path %>
+           `<% end %>
+            <li><%= link_to 'Galleries', galleries_path %>
+            <li><%= link_to 'Groups', groups_path %>
+            <li><%= link_to 'All Photos by this User', current_user %>
+          </ul>
+        </nav>
+        <% end %>
         <li class="navigation-search-bar">
           <div class="search-bar">
             <div class="search-and-submit">

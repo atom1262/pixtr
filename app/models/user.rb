@@ -94,5 +94,9 @@ class User < ActiveRecord::Base
   def unlike(target)
     like = likes.find_by(likeable: target) 
     like.destroy
-  end 
+  end
+  
+  def upgraded?
+    stripe_id.present?
+  end
 end
