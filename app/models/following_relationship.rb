@@ -13,7 +13,7 @@ class FollowingRelationship < ActiveRecord::Base
 
   def cannot_follow_yourself
     if followed_user_id == follower_id
-    errors.add(:base, "You can't follow yourself, unless you're your shadow")
+    errors.add(:base, "You can't follow yourself, unless you are your shadow")
     end
   end
 end

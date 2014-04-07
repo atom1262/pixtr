@@ -27,11 +27,11 @@ class GalleriesController < ApplicationController
   end
 
   def edit
-    @gallery = current_user.galleries.find(params[:id])
+    @gallery = find_user
   end
 
   def update
-    @gallery = current_user.galleries.find(params[:id])
+    @gallery = find_user
     if @gallery.update(gallery_params)
       redirect_to gallery_path(@gallery)
     else
@@ -40,7 +40,7 @@ class GalleriesController < ApplicationController
   end
 
   def destroy
-    gallery = current_user.galleries.find(params[:id])
+    gallery = find_user
     gallery.destroy
     redirect_to root_path
   end
@@ -49,5 +49,9 @@ class GalleriesController < ApplicationController
 
   def gallery_params
     params.require(:gallery).permit(:name)
+  end
+
+  def find_user
+    current_user.galleries.find(params[:id]
   end
 end
