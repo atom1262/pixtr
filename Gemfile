@@ -34,7 +34,7 @@ gem 'dotenv-rails'
 
 group :development do
   gem 'pry-rails'
-  #gem 'better_errors'
+  gem 'better_errors'
   gem 'binding_of_caller'
   #gem 'letter_opener'
   gem 'quiet_assets'

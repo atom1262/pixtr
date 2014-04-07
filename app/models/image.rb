@@ -16,25 +16,15 @@ class Image < ActiveRecord::Base
   validates :description, presence: true
   validates :url, presence: true
 
-  def self.search(search_params)
-    query = search_params[:query]
-    tags = Tag.search(search_params)
-    image_ids = Tagging.where(tag_id: tags).pluck(:image_id)
-    where("name ILIKE :query OR description ILIKE :query OR id IN (:image_ids)", query: "%#{query}%", image_ids: image_ids)
-  end
-
   def user
     gallery.user
   end
 
   def tag_list
-    tags.map(&:name).join(", ")
+    tags.pluck(:name).join(", ")
   end
 
   def tag_list=(tag_string)
-    tags = tag_string.split(", ").map do |tag_name|
-      Tag.find_or_create_by(name: tag_name.strip.downcase)
-    end
-    self.tags = tags
+    self.tags = tags_from_tag_list(tag_string)
   end
 end
